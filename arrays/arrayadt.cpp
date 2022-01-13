@@ -131,12 +131,47 @@ public:
     }
     void removedup()
     {
-        int i = 0;
+        // int i = 0;
+        sort(arr.begin(), arr.end());
         int n = arr.size();
-        while (i < n)
+        int res = 1;
+        f(i, 1, n)
         {
-            while (arr[i] == arr[i + 1])
+            if (arr[i] != arr[res - 1])
             {
+                arr[res] = arr[i];
+                res++;
+            }
+        }
+        //
+        rep(i, res)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+    void pushzero()
+    {
+        int n = arr.size();
+        int res = n - 1;
+        rep(i, n)
+        {
+            if (arr[i] == 0)
+            {
+                if (arr[res] != 0)
+                {
+                    swap(arr[i], arr[res]);
+                    res--;
+                }
+                else
+                {
+                    while (arr[res] == 0)
+                    {
+                        res--;
+                    }
+                    swap(arr[i], arr[res]);
+                    res--;
+                }
             }
         }
     }
@@ -197,6 +232,12 @@ int main()
             break;
         case 10:
             t.reverse();
+            break;
+        case 11:
+            t.removedup();
+            break;
+        case 12:
+            t.pushzero();
             break;
         }
     }
